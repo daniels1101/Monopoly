@@ -18,7 +18,7 @@ var alanBtnInstance = alanBtn({
         document.getElementById('playernumber').value = commandData.command.replace('Alanplayernumber','')
           playernumber_onchange()
        }
-      ChangeColor(commandData.command)
+      ChangeColor(commandData.command, commandData.payload)
       ChangePlayerName(commandData.command, commandData.payload)
         },
     
@@ -47,11 +47,11 @@ var alanBtnInstance = alanBtn({
 
   //this is how you can turn off the Alan Button programmatically
   alanBtnInstance.deactivate();
-
-  function ChangeColor(cmd){
-  if (cmd.includes('AlanPlayer') && cmd.includes('Color')){
-    var Colorvar = cmd.split('Color')
-    document.getElementById('player'+Colorvar[0].replace('AlanPlayer','') +'color').value = Colorvar[1][0].toUpperCase()+Colorvar[1].substring(1)
+  
+//Functions
+  function ChangeColor(cmd, pyd){
+  if (cmd === 'AlanPlayerColor'){
+    document.getElementById('player'+pyd.AlanColorNumber +'color').value = pyd.AlanColorName[0].toUpperCase()+pyd.AlanColorName.substring(1)
         }
       }
 
@@ -61,9 +61,3 @@ var alanBtnInstance = alanBtn({
         }
  }
  
- /*function ChangePlayerName(cmd){
-  if (cmd.includes('AlanPlayerN') && cmd.includes('Name')){
-    var Namevar = cmd.split('Name')
-    document.getElementById('player'+Namevar[0].replace('AlanPlayerN','') +'name').value = Namevar[1][0].toUpperCase()+Namevar[1].substring(1)
-        }
- }*/
