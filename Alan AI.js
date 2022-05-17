@@ -7,17 +7,9 @@ var alanBtnInstance = alanBtn({
         //call client code that will react on the received command
       }
     },
-	onCommand: function (commandData){
-	  if (commandData.command === 'Start'){
-		setup()
-		}
-	},
   onCommand: function (commandData){
-      if (commandData.command.includes('Alanplayernumber') ){
-        console.log(commandData.command.replace('Alanplayernumber','')) 
-        document.getElementById('playernumber').value = commandData.command.replace('Alanplayernumber','')
-          playernumber_onchange()
-       }
+      StartGame(commandData.command)
+      SelectPlayer(commandData.command)
       ChangeColor(commandData.command, commandData.payload)
       ChangePlayerName(commandData.command, commandData.payload)
         },
@@ -49,6 +41,18 @@ var alanBtnInstance = alanBtn({
   alanBtnInstance.deactivate();
   
 //Functions
+function StartGame(cmd){
+  if (cmd === 'Start'){
+		setup()
+		}
+}
+function SelectPlayer(cmd){
+  if (cmd.includes('Alanplayernumber') ){
+    console.log(cmd.replace('Alanplayernumber','')) 
+    document.getElementById('playernumber').value = cmd.replace('Alanplayernumber','')
+      playernumber_onchange()
+   }
+}
   function ChangeColor(cmd, pyd){
   if (cmd === 'AlanPlayerColor'){
     document.getElementById('player'+pyd.AlanColorNumber +'color').value = pyd.AlanColorName[0].toUpperCase()+pyd.AlanColorName.substring(1)
