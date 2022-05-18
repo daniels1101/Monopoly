@@ -8,11 +8,14 @@ var alanBtnInstance = alanBtn({
       }
     },
   onCommand: function (commandData){
-      StartGame(commandData.command)
-      SelectPlayer(commandData.command)
-      ChangeColor(commandData.command, commandData.payload)
-      ChangePlayerName(commandData.command, commandData.payload)
-        },
+    AlanStartGame(commandData.command)
+    AlanSelectPlayer(commandData.command)
+    AlanChangeColor(commandData.command, commandData.payload)
+    AlanChangePlayerName(commandData.command, commandData.payload)
+    AlanChangePlayerai(commandData.command, commandData.payload)
+    AlanRollDice(commandData.command)
+    AlanEndTurn(commandData.command)
+  },
     
     
     rootEl: document.getElementById("alan-btn"),
@@ -41,27 +44,43 @@ var alanBtnInstance = alanBtn({
   alanBtnInstance.deactivate();
   
 //Functions
-function StartGame(cmd){
+function AlanStartGame(cmd){
   if (cmd === 'Start'){
 		setup()
 		}
 }
-function SelectPlayer(cmd){
+function AlanSelectPlayer(cmd){
   if (cmd.includes('Alanplayernumber') ){
     console.log(cmd.replace('Alanplayernumber','')) 
     document.getElementById('playernumber').value = cmd.replace('Alanplayernumber','')
       playernumber_onchange()
    }
 }
-  function ChangeColor(cmd, pyd){
+function AlanChangeColor(cmd, pyd){
   if (cmd === 'AlanPlayerColor'){
     document.getElementById('player'+pyd.AlanColorNumber +'color').value = pyd.AlanColorName[0].toUpperCase()+pyd.AlanColorName.substring(1)
         }
       }
 
- function ChangePlayerName(cmd, pyd){
+function AlanChangePlayerName(cmd, pyd){
   if (cmd === 'AlanPlayerName'){
     document.getElementById('player'+ pyd.PlayerNumber +'name').value = pyd.PlayerName[0].toUpperCase()+pyd.PlayerName.substring(1)
         }
  }
  
+function AlanChangePlayerai(cmd, pyd){
+  if (cmd === 'AlanPlayerai'){
+    document.getElementById('player'+ pyd.ainumber +'ai').value = pyd.Playerai
+        }
+ }
+
+ function AlanRollDice(cmd){
+   if(cmd == 'RollDice'){
+    roll()
+   }
+ }
+ function AlanEndTurn(cmd){
+  if(cmd == 'EndTurn'){
+   play()
+  }
+}

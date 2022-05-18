@@ -43,12 +43,16 @@ function ReplaceNumber(number){
 
 }
 
-
-intent('Start Game', p => {
-    p.play({command: 'Start'})
-    p.play('(Starting)');
-    
-});
+function AIorHUMAN(str){
+    str = str.toLowerCase()
+    if(str == 'ai' || str == 'AI' ){
+        str = 1
+    }
+    if(str == 'human' || str == 'HUMAN'){
+        str = 0
+    }
+    return str
+}
 
 intent('select $(AlanPlayers NUMBER) (players|slots)', p => {
     p.AlanPlayers.value = ReplaceNumber(p.AlanPlayers.value)
@@ -75,4 +79,39 @@ intent('the name of player number $(NameNumber NUMBER) is $(NameChange* (.+))', 
       p.play('Changing player ' + p.NameNumber.value + ' to the name ' + p.NameChange.value);
       p.play({command: 'AlanPlayerName', payload: {PlayerNumber: p.NameNumber.value, PlayerName: p.NameChange.value}}) 
     }
+});
+
+intent(' $(ainumber NUMBER) is going to be (a|an) $(Playerai ai|human)', p => {
+    p.ainumber.value = ReplaceNumber(p.ainumber.value)  
+    if(ValidatePlayerNumber(p.ainumber.value,1,8, p)){
+      p.play('Changing player ' + p.ainumber.value + ' to ' + p.Playerai.value);
+      p.Playerai.value = AIorHUMAN(p.Playerai.value) 
+      p.play({command: 'AlanPlayerai', payload: {ainumber: p.ainumber.value, Playerai: p.Playerai.value}}) 
+    }
+});
+
+intent('Start Game', p => {
+    p.play({command: 'Start'})
+    p.play('(Starting)');
+    p.then(Game);
+   
+});
+
+    
+let Game = context(() => {
+    
+intent('Roll (Dice|Again)', p => {
+    p.play('Rolling dice');
+    p.play({command: 'RollDice'})
+    p.then(EndTurn);
+    
+});
+});
+let EndTurn = context(() => {
+    
+intent('End Turn', p => {
+    p.play('Ending Turn');
+    p.play({command: 'EndTurn'})
+   p.then(Game);
+});
 });
