@@ -12,6 +12,7 @@ var alanBtnInstance = alanBtn({
       SelectPlayer(commandData.command)
       ChangeColor(commandData.command, commandData.payload)
       ChangePlayerName(commandData.command, commandData.payload)
+      ChangePlayerai(commandData.command, commandData.payload)
         },
     
     
@@ -65,3 +66,8 @@ function SelectPlayer(cmd){
         }
  }
  
+ function ChangePlayerai(cmd, pyd){
+  if (cmd === 'AlanPlayerai'){
+    document.getElementById('player'+ pyd.ainumber +'ai').value = pyd.Playerai
+        }
+ }
