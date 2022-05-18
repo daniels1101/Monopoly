@@ -76,3 +76,17 @@ intent('the name of player number $(NameNumber NUMBER) is $(NameChange* (.+))', 
       p.play({command: 'AlanPlayerName', payload: {PlayerNumber: p.NameNumber.value, PlayerName: p.NameChange.value}}) 
     }
 });
+intent('The player $(ainumber NUMBER) is $(Playerai ai|human)', p => {
+    p.ainumber.value = ReplaceNumber(p.ainumber.value)
+    if(p.Playerai.value == 'ai'){
+        p.Playerai.value = 1
+    }
+    if(p.Playerai.value == 'human'){
+        p.Playerai.value = 0
+    }
+
+    if(ValidatePlayerNumber(p.ainumber.value,1,8, p)){
+      p.play('Changing player ' + p.ainumber.value + ' to ' + p.Playerai.value);
+      p.play({command: 'AlanPlayerai', payload: {ainumber: p.ainumber.value, Playerai: p.Playerai.value}}) 
+    }
+});
