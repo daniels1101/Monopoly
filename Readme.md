@@ -13,3 +13,7 @@ Change Number of Players: select $(AlanPlayers NUMBER) (players|slots)
 Change Color: change to $(ColorName Aqua|Black|Blue|Fuchsia|Gray|Green|Lime|Maroon|Navy|Olive|Orange|Purple|Red|Silver|Teal) the player $(ColorNumber NUMBER)
 
 Change Name of Player: the name of player number $(NameNumber NUMBER) is $(NameChange* (.+))
+
+Start Game: Start Game
+
+Select AI or Human: $(ainumber NUMBER) is going to be (a|an) $(Playerai ai|human)
