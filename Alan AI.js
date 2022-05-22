@@ -20,6 +20,11 @@ var alanBtnInstance = alanBtn({
     AlanBid(commandData.command, commandData.payload)
     AlanPass(commandData.command)
     AlanExitAuction(commandData.command)
+    AlanOpenBuyTab(commandData.command)
+    AlanOpenManageTab(commandData.command)
+    AlanOpenTradeTab(commandData.command)
+    AlanCancelTrade(commandData.command)
+    AlanProposeTrade(commandData.command)
   },
     
     
@@ -120,6 +125,34 @@ function AlanChangePlayerai(cmd, pyd){
   function AlanExitAuction(cmd){
     if(cmd == 'ExitAuction'){
        game.auctionExit()
+    }
+  }
+  function AlanOpenBuyTab(cmd){
+    if(cmd == "OpenBuyTab"){
+      $("#buy").show();
+		  $("#manage").hide();
+      $("#alert").scrollTop($("#alert").prop("scrollHeight"));
+    }
+  }
+  function AlanOpenManageTab(cmd){
+    if(cmd == "OpenManageTab"){
+      $("#manage").show()
+      $("#buy").hide();
+    }
+  }
+  function AlanOpenTradeTab(cmd){
+    if(cmd == "OpenTradeTab"){
+      game.trade()
+    }
+  }
+  function AlanProposeTrade(cmd){
+    if(cmd == "ProposeTrade"){
+      game.proposeTrade()
+    }
+  }
+  function AlanCancelTrade(cmd){
+    if(cmd == "CancelTrade"){
+      game.cancelTrade()
     }
   }
 

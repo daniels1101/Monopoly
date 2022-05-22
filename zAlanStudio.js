@@ -118,6 +118,7 @@ intent('End Turn', p => {
     p.play('Ending Turn');
     p.play({command: 'EndTurn'})
 }); 
+
 intent('View Stats', p => {
     p.play('Showing stats');
     p.play({command: 'ViewStats'})
@@ -125,10 +126,10 @@ intent('View Stats', p => {
 });
     
 intent('Close Stats', p => {
-    p.play({command: 'CloseStats'})
     p.play('Closing stats');
-    p.then(Game);
+     p.play({command: 'CloseStats'})
 });
+
 intent('OK', p => {
     p.play('Sure');
     p.play({command: 'ClosePopUp'})
@@ -146,13 +147,40 @@ intent('Pass', p => {
       p.play('Passing');
       p.play({command: 'PassBid'}) 
 });
+
 intent('Exit Auction', p => {
       p.play('Exiting Auction');
       p.play({command: 'ExitAuction'}) 
 });
     
+intent('Open the buy tab', p => {
+      p.play('Opening buy Tab');
+      p.play({command: 'OpenBuyTab'}) 
+});
+    
+intent('Open the manage tab', p => {
+      p.play('Opening manage Tab');
+      p.play({command: 'OpenManageTab'}) 
+});
+    
+intent('Open the trade tab', p => {
+      p.play('Opening Trade Tab');
+      p.play({command: 'OpenTradeTab'}) 
+      p.then(Trade);
 });
 
+let Trade = context(() => {
 
+    intent('Propose Trade', p => {
+      p.play('Proposing Trade');
+      p.play({command: 'ProposeTrade'}) 
+      p.then(Trade);
+    });
 
-
+    intent('Cancel Trade', p => {
+      p.play('Canceling Trade');
+      p.play({command: 'CancelTrade'}) 
+      p.resolve();
+    });
+    });
+});
