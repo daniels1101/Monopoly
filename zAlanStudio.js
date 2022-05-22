@@ -1,4 +1,3 @@
-// Use this sample to create your own voice commands
 function ValidatePlayerNumber(number, min, max, p){
     if(number > max){
        p.play('The maximun player number is ' + max) 
@@ -6,6 +5,16 @@ function ValidatePlayerNumber(number, min, max, p){
     }
     else if(number < min){
        p.play('The minimun player number is ' + min) 
+       return false
+    }
+    else {
+       return true
+    }
+}
+
+function ValidateMoney(number, min, max, p){
+    if(number < min){
+        p.play('You can not bet'+ min +'dollars ') 
        return false
     }
     else {
@@ -102,22 +111,48 @@ let Game = context(() => {
     
 intent('Roll (Dice|Again)', p => {
     p.play('Rolling dice');
-    p.play({command: 'RollDice'})
-    p.then(EndTurn);
-    
+    p.play({command: 'RollDice'})    
 });
-});
-let EndTurn = context(() => {
     
 intent('End Turn', p => {
     p.play('Ending Turn');
     p.play({command: 'EndTurn'})
-   p.then(Game);
-});
-});
-
+}); 
 intent('View Stats', p => {
-    p.play({command: 'ViewStats'})
     p.play('Showing stats');
+    p.play({command: 'ViewStats'})
+
+});
+    
+intent('Close Stats', p => {
+    p.play({command: 'CloseStats'})
+    p.play('Closing stats');
     p.then(Game);
 });
+intent('OK', p => {
+    p.play('Sure');
+    p.play({command: 'ClosePopUp'})
+}); 
+
+intent(' Bid  $(BidNumber NUMBER) (dollar|dollars)', p => {
+    p.BidNumber.value = ReplaceNumber(p.BidNumber.value)  
+    if(ValidateMoney(p.BidNumber.value,0,50000, p)){
+      p.play('Bidding ' + p.BidNumber.value);
+      p.play({command: 'BidNumber', payload: {BidNumber: p.BidNumber.value}}) 
+    }
+});
+    
+intent('Pass', p => {
+      p.play('Passing');
+      p.play({command: 'PassBid'}) 
+});
+intent('Exit Auction', p => {
+      p.play('Exiting Auction');
+      p.play({command: 'ExitAuction'}) 
+});
+    
+});
+
+
+
+
