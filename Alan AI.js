@@ -15,6 +15,10 @@ var alanBtnInstance = alanBtn({
     AlanChangePlayerai(commandData.command, commandData.payload)
     AlanRollDice(commandData.command)
     AlanEndTurn(commandData.command)
+    AlanClosePopup(commandData.command)
+    AlanBid(commandData.command, commandData.payload)
+    AlanPass(commandData.command)
+    AlanExitAuction(commandData.command)
   },
     
     
@@ -82,5 +86,28 @@ function AlanChangePlayerai(cmd, pyd){
  function AlanEndTurn(cmd){
   if(cmd == 'EndTurn'){
    play()
+  }
+}
+function AlanClosePopup(cmd){
+  if(cmd == 'ClosePopUp'){
+    popupclose.click()
+  }
+}
+function AlanBid(cmd, pyd){
+  if(cmd == 'BidNumber'){
+    document.getElementById('bid').value = pyd.BidNumber
+    game.auctionBid()
+  }
+
+}
+function AlanPass(cmd){
+  if(cmd == 'PassBid'){
+    game.auctionPass()
+  }
+}
+
+function AlanExitAuction(cmd){
+  if(cmd == 'ExitAuction'){
+     game.auctionExit()
   }
 }
