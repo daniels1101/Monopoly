@@ -115,3 +115,9 @@ intent('End Turn', p => {
    p.then(Game);
 });
 });
+
+intent('View Stats', p => {
+    p.play({command: 'ViewStats'})
+    p.play('Showing stats');
+    p.then(Game);
+});

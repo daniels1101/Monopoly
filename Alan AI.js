@@ -15,6 +15,7 @@ var alanBtnInstance = alanBtn({
     AlanChangePlayerai(commandData.command, commandData.payload)
     AlanRollDice(commandData.command)
     AlanEndTurn(commandData.command)
+    AlanViewStats(commandData.command)
   },
     
     
@@ -83,4 +84,10 @@ function AlanChangePlayerai(cmd, pyd){
   if(cmd == 'EndTurn'){
    play()
   }
-}
+  }
+
+  function AlanViewStats(cmd){
+  if (cmd == 'ViewStats'){
+   showStats()
+  }
+  } 
