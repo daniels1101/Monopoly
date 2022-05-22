@@ -121,3 +121,9 @@ intent('View Stats', p => {
     p.play('Showing stats');
     p.then(Game);
 });
+
+intent('Close Stats', p => {
+    p.play({command: 'CloseStats'})
+    p.play('Closing stats');
+    p.then(Game);
+});

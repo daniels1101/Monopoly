@@ -16,6 +16,7 @@ var alanBtnInstance = alanBtn({
     AlanRollDice(commandData.command)
     AlanEndTurn(commandData.command)
     AlanViewStats(commandData.command)
+    AlanCloseStats(commandData.command)
   },
     
     
@@ -91,3 +92,9 @@ function AlanChangePlayerai(cmd, pyd){
    showStats()
   }
   } 
+
+  function AlanCloseStats(cmd){
+  if (cmd == 'CloseStats'){
+   closeStats()
+  }
+ } 
