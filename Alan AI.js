@@ -19,6 +19,7 @@ var alanBtnInstance = alanBtn({
     AlanBid(commandData.command, commandData.payload)
     AlanPass(commandData.command)
     AlanExitAuction(commandData.command)
+    AlanViewStats(commandData.command)
   },
     
     
@@ -111,3 +112,8 @@ function AlanExitAuction(cmd){
      game.auctionExit()
   }
 }
+function AlanViewStats(cmd){
+  if (cmd == 'ViewStats'){
+   showStats()
+  }
+  } 

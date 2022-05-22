@@ -147,3 +147,9 @@ intent('Exit Auction', p => {
 });
     
 });
+
+intent('View Stats', p => {
+    p.play({command: 'ViewStats'})
+    p.play('Showing stats');
+    p.then(Game);
+});
