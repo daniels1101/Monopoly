@@ -1,4 +1,3 @@
-
 var alanBtnInstance = alanBtn({
     key: "090ea5192f4efd4f4abda0a537d44f712e956eca572e1d8b807a3e2338fdd0dc/stage",
     authData: {data:"your auth data if needed"},
@@ -123,3 +122,4 @@ function AlanChangePlayerai(cmd, pyd){
        game.auctionExit()
     }
   }
+
