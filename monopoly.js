@@ -2165,6 +2165,11 @@ function showStats() {
 	});
 }
 
+function closeStats (){
+	$("#statswrap").hide();
+	$("#statsbackground").fadeOut(400);
+}
+
 function showdeed(property) {
 	var sq = square[property];
 	$("#deed").show();

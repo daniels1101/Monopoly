@@ -20,6 +20,7 @@ var alanBtnInstance = alanBtn({
     AlanPass(commandData.command)
     AlanExitAuction(commandData.command)
     AlanViewStats(commandData.command)
+    AlanCloseStats(commandData.command)
   },
     
     
@@ -117,3 +118,10 @@ function AlanViewStats(cmd){
    showStats()
   }
   } 
+
+  function AlanCloseStats(cmd){
+  if (cmd == 'CloseStats'){
+   closeStats()
+  }
+ } 
+
