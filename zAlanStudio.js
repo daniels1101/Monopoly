@@ -1,4 +1,3 @@
-// Use this sample to create your own voice commands
 function ValidatePlayerNumber(number, min, max, p){
     if(number > max){
        p.play('The maximun player number is ' + max) 
@@ -124,6 +123,12 @@ intent('View Stats', p => {
     p.play({command: 'ViewStats'})
 
 });
+    
+intent('Close Stats', p => {
+    p.play({command: 'CloseStats'})
+    p.play('Closing stats');
+    p.then(Game);
+});
 intent('OK', p => {
     p.play('Sure');
     p.play({command: 'ClosePopUp'})
@@ -148,14 +153,6 @@ intent('Exit Auction', p => {
     
 });
 
-intent('View Stats', p => {
-    p.play({command: 'ViewStats'})
-    p.play('Showing stats');
-    p.then(Game);
-});
 
-intent('Close Stats', p => {
-    p.play({command: 'CloseStats'})
-    p.play('Closing stats');
-    p.then(Game);
-});
+
+

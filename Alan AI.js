@@ -1,4 +1,3 @@
-
 var alanBtnInstance = alanBtn({
     key: "090ea5192f4efd4f4abda0a537d44f712e956eca572e1d8b807a3e2338fdd0dc/stage",
     authData: {data:"your auth data if needed"},
@@ -15,12 +14,12 @@ var alanBtnInstance = alanBtn({
     AlanChangePlayerai(commandData.command, commandData.payload)
     AlanRollDice(commandData.command)
     AlanEndTurn(commandData.command)
+    AlanViewStats(commandData.command)
+    AlanCloseStats(commandData.command)
     AlanClosePopup(commandData.command)
     AlanBid(commandData.command, commandData.payload)
     AlanPass(commandData.command)
     AlanExitAuction(commandData.command)
-    AlanViewStats(commandData.command)
-    AlanCloseStats(commandData.command)
   },
     
     
@@ -89,39 +88,38 @@ function AlanChangePlayerai(cmd, pyd){
   if(cmd == 'EndTurn'){
    play()
   }
-}
-function AlanClosePopup(cmd){
-  if(cmd == 'ClosePopUp'){
-    popupclose.click()
-  }
-}
-function AlanBid(cmd, pyd){
-  if(cmd == 'BidNumber'){
-    document.getElementById('bid').value = pyd.BidNumber
-    game.auctionBid()
   }
 
-}
-function AlanPass(cmd){
-  if(cmd == 'PassBid'){
-    game.auctionPass()
-  }
-}
-
-function AlanExitAuction(cmd){
-  if(cmd == 'ExitAuction'){
-     game.auctionExit()
-  }
-}
-function AlanViewStats(cmd){
+  function AlanViewStats(cmd){
   if (cmd == 'ViewStats'){
    showStats()
   }
   } 
-
   function AlanCloseStats(cmd){
-  if (cmd == 'CloseStats'){
-   closeStats()
+    if (cmd == 'CloseStats'){
+     closeStats()
+    }
+   } 
+  function AlanClosePopup(cmd){
+    if(cmd == 'ClosePopUp'){
+      popupclose.click()
+    }
   }
- } 
+  function AlanBid(cmd, pyd){
+    if(cmd == 'BidNumber'){
+      document.getElementById('bid').value = pyd.BidNumber
+      game.auctionBid()
+    }
+  }
+  function AlanPass(cmd){
+    if(cmd == 'PassBid'){
+      game.auctionPass()
+    }
+  }
+  
+  function AlanExitAuction(cmd){
+    if(cmd == 'ExitAuction'){
+       game.auctionExit()
+    }
+  }
 
