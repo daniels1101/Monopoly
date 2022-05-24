@@ -571,8 +571,9 @@ function Game() {
 			while (currentName.lastChild) {
 				currentName.removeChild(currentName.lastChild);
 			}
-
-			nameSelect = currentName.appendChild(document.createElement("select"));
+			var selectdropdown = document.createElement("select")
+			selectdropdown.setAttribute('id','TradeSelectRigthPlayer')
+			nameSelect = currentName.appendChild(selectdropdown);
 			for (var i = 1; i <= pcount; i++) {
 				if (i === initiator.index) {
 					continue;
@@ -797,10 +798,6 @@ function Game() {
 			return false;
 		}
 
-		if (showAlerts && !confirm(initiator.name + ", are you sure you want to make this exchange with " + recipient.name + "?")) {
-			return false;
-		}
-
 		// Exchange properties
 		for (var i = 0; i < 40; i++) {
 
@@ -905,10 +902,6 @@ function Game() {
 		if (isAPropertySelected === 0) {
 			popup("<p>One or more properties must be selected in order to trade.</p>");
 
-			return false;
-		}
-
-		if (initiator.human && !confirm(initiator.name + ", are you sure you want to make this offer to " + recipient.name + "?")) {
 			return false;
 		}
 
@@ -1277,10 +1270,17 @@ function popup(HTML, action, option) {
 
 }
 
+function ToogleContent(){
+    if(document.getElementById('help-content').style.display == 'none'){
+        document.getElementById('help-content').style.display = 'block';
+    }
+    else{
+        document.getElementById('help-content').style.display = 'none';
+    }
+}
 
 function updatePosition() {
 	// Reset borders
-	document.getElementById("jail").style.border = "1px solid black";
 	document.getElementById("jailpositionholder").innerHTML = "";
 	for (var i = 0; i < 40; i++) {
 		document.getElementById("cell" + i).style.border = "1px solid black";
@@ -2827,7 +2827,7 @@ window.onload = function() {
 
 	// Jail corrections
 	$("<div>", {id: "jailpositionholder" }).appendTo("#jail");
-	$("<span>").text("Jail").appendTo("#jail");
+	$("<span>").text("").appendTo("#jail");
 
 	document.getElementById("jail").enlargeId = "enlarge40";
 

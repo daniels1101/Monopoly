@@ -60,11 +60,13 @@ function AlanStartGame(cmd){
 		}
 }
 function AlanSelectPlayer(cmd){
-  if (cmd.includes('Alanplayernumber') ){
+  if (cmd!=undefined){
+  if(cmd.includes('Alanplayernumber') ){
     console.log(cmd.replace('Alanplayernumber','')) 
     document.getElementById('playernumber').value = cmd.replace('Alanplayernumber','')
       playernumber_onchange()
    }
+  }
 }
 function AlanChangeColor(cmd, pyd){
   if (cmd === 'AlanPlayerColor'){
@@ -156,3 +158,13 @@ function AlanChangePlayerai(cmd, pyd){
     }
   }
 
+/*function AlanSelectTradePlayer(cmd, pyd){
+  var ptradelist = document.getElementById('TradeSelectRigthPlayer')
+  var ptradename = pyd.
+  for (var i = 0; i < pcount - 2; i++){
+  if (ptradelist.options[i].innerHTML == ptradename){
+    ptradelist.value = ptradelist.options[i].value
+}
+}
+}
+*/
