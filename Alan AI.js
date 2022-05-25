@@ -14,6 +14,7 @@ var alanBtnInstance = alanBtn({
     AlanChangePlayerai(commandData.command, commandData.payload)
     AlanRollDice(commandData.command)
     AlanEndTurn(commandData.command)
+    AlanBuy(commandData.command)
     AlanViewStats(commandData.command)
     AlanCloseStats(commandData.command)
     AlanClosePopup(commandData.command)
@@ -96,6 +97,11 @@ function AlanChangePlayerai(cmd, pyd){
    play()
   }
   }
+  function AlanBuy(cmd){
+    if(cmd == 'Buy'){
+      buy()
+    }
+    }
 
   function AlanViewStats(cmd){
   if (cmd == 'ViewStats'){
